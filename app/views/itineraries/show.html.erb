@@ -1,0 +1,25 @@
+<div class="col-sm-6">
+	<%= @itinerary.title %>
+	<%= @itinerary.description %>
+</div>
+<div class="col-sm-6" id="map">
+	map
+</div>
+<div class="col-sm-4 col-lg-3 well">
+	<% form_for @item do |i| %>
+	<div class="form-group"> 
+	<%= i.text_field :activity, placeholder: "Activity", class: "form-control"  %>
+
+	</div>
+	<% end  %>
+
+
+
+
+</div>
+<div class="col-sm-4 col-lg-3 well">
+	<h5>Sleep</h5>
+</div>
+<div class="col-sm-4 col-lg-3 well">
+	<h5>Play</h5>
+</div>
