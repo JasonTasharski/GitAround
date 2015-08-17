@@ -6,14 +6,16 @@
 	map
 </div>
 <div class="col-sm-4 col-lg-3 well">
-	<% form_for @item do |i| %>
+	<%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
 	<div class="form-group"> 
-	<%= i.text_field :activity, placeholder: "Activity", class: "form-control"  %>
+	<%= f.text_field :activity_name, placeholder: "Activity", class: "form-control"  %>
+	<%= f.text_area :description, placeholder: "Description", class: "form-control" %>
+	<%= f.text_field :category, placeholder: "Category", class: "form-control" %>
+	<%= f.text_field :location, placeholder: "Location", class: "form-control"%>
+	<%= f.submit class: "btn" %>
 
 	</div>
 	<% end  %>
-
-
 
 
 </div>
@@ -22,4 +24,10 @@
 </div>
 <div class="col-sm-4 col-lg-3 well">
 	<h5>Play</h5>
+	<% @itinerary.items.each do |i| %>
+	<%= i.activity_name %> <br>
+	<%= i.description %> <br>
+	<%= i.category %> <br>
+	<%= i.location %> <br>
+	<% end %>
 </div>
