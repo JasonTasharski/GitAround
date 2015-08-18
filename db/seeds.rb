@@ -23,3 +23,13 @@ User.all.each do |user|
     @itinerary = user.itineraries.create!(itinerary_params)
   end
 end
+Itinerary.all.each do |itinerary|
+  3.times do
+    item_params = Hash.new
+    item_params[:activity_name] = FFaker::HipsterIpsum.sentence(1)
+    item_params[:description] = FFaker::HipsterIpsum.sentence(2)
+    item_params[:lat] = (37.7 + (rand() * 0.08))
+    item_params[:lng] = ((-122.5) + (rand() * 0.1))
+    @item = itinerary.items.create!(item_params)
+  end
+end
