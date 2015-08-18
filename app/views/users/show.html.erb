@@ -5,10 +5,9 @@
   </div>
   <div class="col-xs-8 col-sm-9">
     <h1>Trips</h1>
-		<span><%= paginate @itineraries %></span>
 		<hr class="style-one">
 		<div class="title">
-			<% @itineraries.each do |p| %>
+			<% current_user.itineraries.each do |p| %>
 			<p>	
 				<%= link_to p.title, user_itinerary_path(p.user, p) %>
 				<% if current_user && (current_user.id == p.user_id) %>

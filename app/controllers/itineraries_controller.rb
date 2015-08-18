@@ -29,7 +29,7 @@ class ItinerariesController < ApplicationController
   end
 
   def edit
-      @itinerary = Itinerary.find(params[:id])
+    @itinerary = Itinerary.find(params[:id])
   end
 
   def update
