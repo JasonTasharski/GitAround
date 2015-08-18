@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to profile_path
+            redirect_to user_path(current_user)
         flash[:notice] = "Complete your profile!"
         else
             redirect_to signup_path
@@ -21,14 +21,21 @@ class UsersController < ApplicationController
     end
   end
 
+  #edit the profile page
+  def edit 
+    if @user = current_user
+    end  
+
+  end 
+
   #update the profile page
   def update
-    if current_user
+    if @user = current_user
       #get updated data
       updated_attributes = params.require(:user).permit(:email, :username, :password, :avatar)
       # update the creature
       current_user.update_attributes(updated_attributes)
-      redirect_to profile_path
+      redirect_to user_path(current_user)
     else
       redirect_to root_path
     end
@@ -39,6 +46,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     render :show
   end
+
 
   #private methods
   private
