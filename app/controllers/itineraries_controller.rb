@@ -1,6 +1,10 @@
 class ItinerariesController < ApplicationController
-  before_filter :authorize
+
    
+  def index
+    @itinerary = Itinerary.order(created_at: :desc)
+  end
+
   def new
     @itinerary = Itinerary.new
     @user = current_user
