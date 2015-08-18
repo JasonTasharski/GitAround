@@ -28,6 +28,14 @@ Itinerary.all.each do |itinerary|
     item_params = Hash.new
     item_params[:activity_name] = FFaker::HipsterIpsum.sentence(1)
     item_params[:description] = FFaker::HipsterIpsum.sentence(2)
+    num = rand(3)
+    if num == 1
+      item_params[:category] = "sleep"
+    elsif num == 2
+      item_params[:category] = "eat"
+    elsif num == 0
+      item_params[:category] = "play"
+    end
     item_params[:lat] = (37.74 + (rand() * 0.04))
     item_params[:lng] = ((-122.5) + (rand() * 0.1))
     @item = itinerary.items.create!(item_params)

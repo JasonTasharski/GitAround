@@ -16,22 +16,27 @@
 			<%= f.text_field :category, placeholder: "Category", class: "form-control" %>
 			<%= f.text_field :location, placeholder: "Location", class: "form-control"%>
 			<%= f.submit class: "btn" %>
-
 			</div>
-			<% end  %>
-
-
+			<% end %>
 		</div>
 		<div class="col-sm-4 col-lg-3 well">
 			<h5>Sleep</h5>
+      <% @itinerary.items.each do |i| %>
+      <% if i.category == "sleep" %>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> <br>
+        <% end %>
+      <% end %>
 		</div>
 		<div class="col-sm-4 col-lg-3 well">
 			<h5>Play</h5>
 			<% @itinerary.items.each do |i| %>
-			<%= i.activity_name %> <br>
-			<%= i.description %> <br>
-			<%= i.category %> <br>
-			<%= i.location %> <br>
+      <% if i.category == "play" %>
+  			<%= i.activity_name %> <br>
+  			<%= i.description %> <br>
+  			<%= i.location %> <br>
+        <% end %>
 			<% end %>
 		</div>
 	</div>
@@ -63,6 +68,7 @@ var geojson = {
     type: "Feature",
     properties: {
       title: "<%= c.activity_name %>",
+      description: "<%= c.description %>",
       "marker-size": "medium",
       "marker-color": "#7ec9b1",
       "marker-symbol": "suitcase",
