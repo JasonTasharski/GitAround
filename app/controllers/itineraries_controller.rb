@@ -1,6 +1,10 @@
 class ItinerariesController < ApplicationController
-  before_filter :authorize
+
    
+  def index
+    @itinerary = Itinerary.order(created_at: :desc)
+  end
+
   def new
     @itinerary = Itinerary.new
     @user = current_user
@@ -18,8 +22,6 @@ class ItinerariesController < ApplicationController
 
   end
 
-  def update
-  end
 
   def show
     @itinerary = Itinerary.find(params[:id])
@@ -27,6 +29,17 @@ class ItinerariesController < ApplicationController
   end
 
   def edit
+      @itinerary = Itinerary.find(params[:id])
+  end
+
+  def update
+    itinerary = Itinerary.find(params[:id])
+    if current_user.itineraries.include? itinerary
+      itinerary.update_attributes(itinerary_params)
+      redirect_to itinerary_path
+    else
+      redirect_to login_path
+    end
   end
 
   def destroy

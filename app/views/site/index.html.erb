@@ -1,2 +1,7 @@
 <h1>Site#index</h1>
 <p>Find me in app/views/site/index.html.erb</p>
+
+
+<% @itinerary.each do |i| %>
+<%= i.title %>
+<% end  %>
