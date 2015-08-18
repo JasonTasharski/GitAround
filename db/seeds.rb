@@ -5,7 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create(username: "test", email: "test@test.com", password: "test", avatar: "")
 5.times do 
 	user_params = Hash.new
 	user_params[:username] = FFaker::Name.first_name

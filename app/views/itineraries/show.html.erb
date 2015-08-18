@@ -1,14 +1,16 @@
 <div id="map"></div>
 <div class="container">
 	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
+		<div class="col-sm-4 well">
 			<%= @itinerary.title %>
+		</div>
+		<div class="col-sm-8 well">
 			<%= @itinerary.description %>
-		    <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil' %> 
+		    <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil' %><%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-4 col-lg-3 well">
+		<div class="col-sm-3 well">
 			<%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
 			<div class="form-group"> 
 			<%= f.text_field :activity_name, placeholder: "Activity", class: "form-control"  %>
@@ -19,23 +21,33 @@
 			</div>
 			<% end %>
 		</div>
-		<div class="col-sm-4 col-lg-3 well">
+		<div class="col-sm-3 well">
+			<h5>Eat</h5>
+      <% @itinerary.items.each do |i| %>
+      <% if i.category == "eat" %>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
+        <% end %>
+      <% end %>
+		</div>
+		<div class="col-sm-3 well">
 			<h5>Sleep</h5>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "sleep" %>
         <%= i.activity_name %> <br>
         <%= i.description %> <br>
-        <%= i.location %> <br>
+        <%= i.location %> <span> <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
         <% end %>
       <% end %>
 		</div>
-		<div class="col-sm-4 col-lg-3 well">
+		<div class="col-sm-3 well">
 			<h5>Play</h5>
 			<% @itinerary.items.each do |i| %>
       <% if i.category == "play" %>
   			<%= i.activity_name %> <br>
   			<%= i.description %> <br>
-  			<%= i.location %> <br>
+  			<%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
         <% end %>
 			<% end %>
 		</div>
