@@ -19,7 +19,7 @@ User.all.each do |user|
     itinerary_params = Hash.new
     itinerary_params[:title] = FFaker::HipsterIpsum.sentence(1)
     itinerary_params[:description] = FFaker::HipsterIpsum.sentence(2)
-    itinerary_params[:cover] = "knoe pickchur"
+    itinerary_params[:cover] = "http://media.giphy.com/media/JKswczDIOEG2Y/giphy.gif"
     @itinerary = user.itineraries.create!(itinerary_params)
   end
 end
@@ -28,7 +28,7 @@ Itinerary.all.each do |itinerary|
     item_params = Hash.new
     item_params[:activity_name] = FFaker::HipsterIpsum.sentence(1)
     item_params[:description] = FFaker::HipsterIpsum.sentence(2)
-    item_params[:lat] = (37.7 + (rand() * 0.08))
+    item_params[:lat] = (37.74 + (rand() * 0.04))
     item_params[:lng] = ((-122.5) + (rand() * 0.1))
     @item = itinerary.items.create!(item_params)
   end
