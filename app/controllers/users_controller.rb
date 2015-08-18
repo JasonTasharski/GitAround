@@ -37,7 +37,6 @@ class UsersController < ApplicationController
   #show profile page
   def show
     @user = User.find(params[:id])
-    
     render :show
   end
 
