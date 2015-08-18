@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 
   def destroy
     Item.find(params[:id]).destroy
-    redirect_to itinerary_path
+    redirect_to profile_path
   end
 
   def edit
