@@ -1,3 +1,24 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.img-circle {
+	border-radius: 50%;
+	height: 200px;
+}
+
+
+.crop {
+height: 100px;
+width: 100px;
+overflow: hidden;
+}
+
+.crop img {
+height: 100px;
+width: 100px;
+}
+
+.row_one {
+	margin-top: 70px;
+}

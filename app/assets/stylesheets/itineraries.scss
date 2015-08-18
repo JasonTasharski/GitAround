@@ -12,17 +12,22 @@
 }
 
 
- 
+.boxes {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+
 .crop {
-height: 380px;
-width: 380px;
+height: 300px;
+width: 300px;
 overflow: hidden;
 text-align: center;
 }
 
 .crop img {
-height: 380px;
-width: 380px;
+height: 300px;
+width: 300px;
 }
 
 body {

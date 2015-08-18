@@ -36,8 +36,7 @@ class UsersController < ApplicationController
 
   #show profile page
   def show
-    @user = current_user
-    session[:return_to] = profile_path
+    @user = User.find(params[:id])
     
     render :show
   end
