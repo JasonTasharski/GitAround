@@ -21,7 +21,7 @@ resources :sessions
 
 
 
-root "site#index"
+root "itineraries#index"
 
 end
 

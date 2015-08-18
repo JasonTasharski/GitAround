@@ -1,6 +1,7 @@
 <div class="col-sm-6">
 	<%= @itinerary.title %>
 	<%= @itinerary.description %>
+    <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil' %> 
 </div>
 <div class="col-sm-6" id="map">
 	map
