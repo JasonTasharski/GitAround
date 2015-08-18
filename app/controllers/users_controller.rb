@@ -23,7 +23,8 @@ class UsersController < ApplicationController
 
   #edit the profile page
   def edit 
-    if @user = current_user
+    if current_user
+      @user = User.find(params[:id])  
     end  
 
   end 

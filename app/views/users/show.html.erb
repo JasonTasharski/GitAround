@@ -7,6 +7,10 @@
 	<%= @user.hometown %>
 	Joined <%= localize(@user.created_at, :format => '%m/%d/%Y') %>
 	Itineraries created: <%= @user.itineraries.count %>
+	<% if @user == current_user  %>
+		<%= link_to 'Edit', edit_user_path(@user) %>
+	<% else  %>
+	<% end  %>	
   </div>
 
 <div class="col-sm-1"></div>
