@@ -9,6 +9,8 @@
 
 ## Reminders on Pushing
 1. Don't push to master.
-2. Make sure you're working on a branch with "git branch".
-3. If you aren't, change to a branch for the feature you're working on with "git checkout -b featureName".
-4. When you push from that branch, run "git push origin featurename", and a repository for that branch will be created on github.
+2. If we agreed to push to master, push to master.
+3. Make sure you're working on a branch with "git branch".
+4. If you aren't, change to a branch for the feature you're working on with "git checkout -b featureName".
+5. When you push from that branch, run "git push origin featurename", and a repository for that branch will be created on github.
+6. If you have conflicts, fix the conflicts, add, merge, commit, and push.
