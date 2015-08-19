@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
+  before_filter :authorize, only: [:show]
   #form to create new user
   def new
+    #redirect user if already logged in
+    if current_user
+      redirect_to profile_path
+    else
       @user = User.new
       render :new
+    end
   end
 
   #create new user in db
@@ -10,23 +16,27 @@ class UsersController < ApplicationController
     if current_user
       redirect_to profile_path
     else
-        @user = User.new(user_params)
-        if @user.save
-            session[:user_id] = @user.id
-            redirect_to user_path(current_user)
+      @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:notice] = "Congrats, you're now part of Git Around!"
+        redirect_to user_path(current_user)
         flash[:notice] = "Complete your profile!"
-        else
-            redirect_to signup_path
-        end
+      else
+        redirect_to signup_path
+        flash[:notice] = "You need to sign up before viewing profiles"
+      end
     end
   end
 
   #edit the profile page
   def edit 
     if current_user
-      @user = User.find(params[:id])  
+      @user = User.find(params[:id])
+    else
+        redirect_to signup_path
+        flash[:notice] = "You need to sign up before to edit profiles"
     end  
-
   end 
 
   #update the profile page
