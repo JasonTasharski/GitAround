@@ -2,11 +2,20 @@
 <html>
 <head>
   <title>GitAround</title>
+	
+	<!-- mapbox js -->
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
+  
+  <!-- mapbox link -->
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.css' rel='stylesheet'/>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!-- Latest compiled and minified CSS -->
+
+	
 
 
 </head>
@@ -44,9 +53,7 @@
 
 		<%= yield %>
 
-	<script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap"
-        async defer></script>
-
+	
 </body>
 </html>
 

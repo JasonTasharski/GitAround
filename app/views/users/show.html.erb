@@ -9,8 +9,10 @@
 	Itineraries created: <%= @user.itineraries.count %>
 	<% if @user == current_user  %>
 		<%= link_to 'Edit', edit_user_path(@user) %>
+		<%= link_to "", user_itinerary_path(p.user, p), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %>
 	<% else  %>
 	<% end  %>	
+
   </div>
 
 <div class="col-sm-1"></div>

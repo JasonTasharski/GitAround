@@ -18,12 +18,22 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    Item.find(params[:id]).destroy
+    redirect_to profile_path
   end
 
   def edit
+      @item = Item.find(params[:id])
   end
 
   def update
+    item = Item.find(params[:id])
+    if current_user.itineraries.include? itinerary
+      item.update_attributes(item_params)
+      redirect_to itinerary_path
+    else
+      redirect_to login_path
+    end
   end
 
   private

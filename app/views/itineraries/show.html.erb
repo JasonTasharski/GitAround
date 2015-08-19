@@ -1,24 +1,16 @@
-<input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-<div id="type-selector" class="controls">
-  <input type="radio" name="type" id="changetype-all" checked="checked">
-  <label for="changetype-all">All</label>
-  <input type="radio" name="type" id="changetype-establishment">
-  <label for="changetype-establishment">Establishments</label>
-  <input type="radio" name="type" id="changetype-address">
-  <label for="changetype-address">Addresses</label>
-  <input type="radio" name="type" id="changetype-geocode">
-  <label for="changetype-geocode">Geocodes</label>
-</div>
-<div id="map"></div><div class="container">
+<div id="map"></div>
+<div class="container">
 	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3">
+		<div class="col-sm-4 well">
 			<%= @itinerary.title %>
+		</div>
+		<div class="col-sm-8 well">
 			<%= @itinerary.description %>
-		    <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil' %> 
+		    <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil' %><%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-4 col-lg-3 well">
+		<div class="col-sm-3 well">
 			<%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
 			<div class="form-group"> 
 			<%= f.text_field :activity_name, placeholder: "Activity", class: "form-control"  %>
@@ -26,108 +18,85 @@
 			<%= f.text_field :category, placeholder: "Category", class: "form-control" %>
 			<%= f.text_field :location, placeholder: "Location", class: "form-control"%>
 			<%= f.submit class: "btn" %>
-
 			</div>
-			<% end  %>
-
-
+			<% end %>
 		</div>
-		<div class="col-sm-4 col-lg-3 well">
+		<div class="col-sm-3 well">
+			<h5>Eat</h5>
+      <% @itinerary.items.each do |i| %>
+      <% if i.category == "eat" %>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
+        <% end %>
+      <% end %>
+		</div>
+		<div class="col-sm-3 well">
 			<h5>Sleep</h5>
+      <% @itinerary.items.each do |i| %>
+      <% if i.category == "sleep" %>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> <span> <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
+        <% end %>
+      <% end %>
 		</div>
-		<div class="col-sm-4 col-lg-3 well">
+		<div class="col-sm-3 well">
 			<h5>Play</h5>
 			<% @itinerary.items.each do |i| %>
-			<%= i.activity_name %> <br>
-			<%= i.description %> <br>
-			<%= i.category %> <br>
-			<%= i.location %> <br>
+      <% if i.category == "play" %>
+  			<%= i.activity_name %> <br>
+  			<%= i.description %> <br>
+  			<%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
+        <% end %>
 			<% end %>
 		</div>
 	</div>
 </div>
+
 <script>
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 37.74, lng: -122.45},
-    zoom: 13
-  });
-  var input = /** @type {!HTMLInputElement} */(
-      document.getElementById('pac-input'));
+ L.mapbox.accessToken = 'pk.eyJ1IjoiYXNhbnRvczMwMjYiLCJhIjoiZWZlMmMyM2JiN2ZiNzcxZmJkOGJhMWNhZWE4ODc1MjMifQ.Moj73Bv5_uyylRIcZkXcYg';
+  var map = L.mapbox.map('map', 'mapbox.high-contrast')
+                .setView([37.77, -122.45], 12);
 
-  var types = document.getElementById('type-selector');
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+  // Disable drag and zoom handlers.
+      // map.dragging.disable();
+      // map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
 
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
+// Disable tap handler, if present.
+if (map.tap) map.tap.disable();
 
-  var infowindow = new google.maps.InfoWindow();
-  var marker = new google.maps.Marker({
-    map: map,
-    anchorPoint: new google.maps.Point(0, -29)
-  });
-  
-  var options = $.extend({
-    scrollwheel: false,
-    navigationControl: false,
-    mapTypeControl: false,
-    scaleControl: false,
-    draggable: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-	}, options);
-  
-  autocomplete.addListener('place_changed', function() {
-    infowindow.close();
-    marker.setVisible(false);
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-      window.alert("Autocomplete's returned place contains no geometry");
-      return;
+var myLayer = L.mapbox.featureLayer().addTo(map);
+
+var geocoder = L.mapbox.geocoder('mapbox.places');
+
+var geojson = {
+  type: "FeatureCollection",
+  features: [
+  <% @itinerary.items.each do |c| %>
+  {
+    type: "Feature",
+    properties: {
+      title: "<%= c.activity_name %>",
+      description: "<%= c.description %>",
+      "marker-size": "medium",
+      "marker-color": "#7ec9b1",
+      "marker-symbol": "suitcase",
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [<%=c.lng %>, <%=c.lat%>]
     }
+  },<% end %>
+]
 
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17);  // Why 17? Because it looks good.
-    }
-    marker.setIcon(/** @type {google.maps.Icon} */({
-      url: place.icon,
-      size: new google.maps.Size(71, 71),
-      origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(35, 35)
-    }));
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
+};
 
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] && place.address_components[0].short_name || ''),
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
+myLayer.setGeoJSON(geojson);
+myLayer.on('click', function(e) {
+  window.location.replace(e.layer.feature.properties.url);
+}); 
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infowindow.open(map, marker);
-  });
-
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id);
-    radioButton.addEventListener('click', function() {
-      autocomplete.setTypes(types);
-    });
-  }
-
-  setupClickListener('changetype-all', []);
-  setupClickListener('changetype-address', ['address']);
-  setupClickListener('changetype-establishment', ['establishment']);
-  setupClickListener('changetype-geocode', ['geocode']);
-}
 </script>
