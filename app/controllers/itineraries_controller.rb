@@ -53,6 +53,7 @@ class ItinerariesController < ApplicationController
     itinerary_clone = itinerary.dup
     @user = current_user
     itinerary_clone.user_id = @user.id
+    itinerary_clone.cover = itinerary.cover
     if itinerary_clone.save
       redirect_to user_path(@user)
     else
