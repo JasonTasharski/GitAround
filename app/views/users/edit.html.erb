@@ -3,5 +3,6 @@
 <%= form_for @user do |f| %>
   <%= f.text_field :username, class:"form-control", :placeholder => "First name" %><br>
   <%= f.email_field :email, class:"form-control", :placeholder => "Email" %><br>
+  <%= f.file_field :avatar, placeholder: "Avatar", class: "form-control", required: false %><br>
   <%= f.submit "Save Changes", class: "btn-submit" %>
 <% end %>
