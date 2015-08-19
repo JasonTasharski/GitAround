@@ -10,17 +10,23 @@
    color: white!important;
 
 }
- 
-.crop {
-height: 380px;
-width: 380px;
-overflow: hidden;
-text-align: center;
+
+
+
+.boxes {
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
 
-.crop img {
-height: 380px;
-width: 380px;
+
+.crop_splash {
+height: 300px;
+width: 300px;
+}
+
+.crop_splash img {
+height: 300px;
+width: 300px;
 }
 
   html, body {

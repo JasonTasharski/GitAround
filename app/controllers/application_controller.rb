@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-      unless current_user
-          redirect_to root_path
-      end
+    unless current_user
+      flash[:error] = "You must be logged in to do that"
+      redirect_to root_path
     end
+  end
 end

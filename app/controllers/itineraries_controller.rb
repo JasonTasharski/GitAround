@@ -45,7 +45,7 @@ class ItinerariesController < ApplicationController
   def destroy
     @user = current_user
     Itinerary.find(params[:id]).destroy
-    redirect_to profile_path
+    redirect_to user_path(current_user)
   end
 
   private

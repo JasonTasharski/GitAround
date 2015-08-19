@@ -21,11 +21,6 @@
 </head>
 <body>
 
-
-		
-
-
-
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
@@ -44,7 +39,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <% if current_user %> 
-	          <li><a href="/profile">Profile</a></li>
+	          <li><a href="/users/<%= current_user.id %>">Profile</a></li>
 	          <li><a href="/logout">Log Out</a></li>
 	          <li><a href="/users/<%= current_user.id %>/itineraries/new">New Trip</a></li>
 	        <% else %>  
@@ -55,6 +50,11 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
+
+	 <div class="container text-center">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: "alert #{name == 'error' ? 'alert-danger' : 'alert-info'}" %>
+    <% end %>
 
 		<%= yield %>
 
