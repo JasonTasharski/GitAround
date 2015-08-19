@@ -10,16 +10,14 @@
         <%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %>
       </div>
       <div class="form-group">
-        <%= f.text_field :username, placeholder: "Username", class: "form-control", required:true %>
+        <%= f.text_field :username, placeholder: "Username", class: "form-control", required: true %>
       </div>
       <div class="form-group">
         <%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %>
       </div>
 
       <div class="form-group">
-        <%= simple_form_for @user, url: users_path do |form| %>
-          <%= form.input :avatar, as: :file %>
-        <% end %>
+        <%= form.file_field :avatar, placeholder: "avatar", class: "form-control", required: false %>
       </div>
       <%= f.submit "Sign Up", class: "btn btn-default" %>
     <% end %>
