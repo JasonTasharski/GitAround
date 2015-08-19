@@ -4,7 +4,6 @@
 	<img src="<%= @user.avatar %>" class="img-circle">
 	<h4> <%= @user.username %></h4>
 	<hr>
-	<%= image_tag @user.avatar.url(:medium) %>
 	<%= @user.hometown %>
 	Joined <%= localize(@user.created_at, :format => '%m/%d/%Y') %>
 	Itineraries created: <%= @user.itineraries.count %>
