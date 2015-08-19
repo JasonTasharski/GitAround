@@ -1,5 +1,3 @@
-//itinerary.js
-
 $(function() {
 console.log("Ready to serve");
 
@@ -21,3 +19,4 @@ function initialize() {
 
 
 });
+
