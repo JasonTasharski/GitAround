@@ -96,7 +96,7 @@ var geojson = {
     },
     geometry: {
       type: "Point",
-      coordinates: [<%=c.lng.to_f %>, <%=c.lat.to_f %>]
+      coordinates: [<%=c.lng.to_f %>, <%=c.lat.to_f%>]
     }
   },<% end %>
 ]
@@ -107,5 +107,8 @@ myLayer.setGeoJSON(geojson);
 myLayer.on('click', function(e) {
   window.location.replace(e.layer.feature.properties.url);
 }); 
+
+// mapbox function to turn an addres into lat and long
+
 
 </script>
