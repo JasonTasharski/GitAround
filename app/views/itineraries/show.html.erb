@@ -4,8 +4,9 @@
      <br>
      <h3><%= @itinerary.title %></h3> 
       <%= @itinerary.description %>
-      <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil' %>
-      <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> <br><br><br>
+
+        <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil'%>
+        <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> <br><br><br>
 
     <div class="well" style="margin-right: 50px;">
       <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
@@ -34,7 +35,7 @@
       <% @itinerary.items.each do |i| %>
       <% if i.category == "eat" %>
         <%= i.activity_name %> <br>
-        <%= i.description %> 
+        <%= i.description %> <br>
         <%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
         <% end %>
       <% end %>
@@ -90,13 +91,15 @@ var geojson = {
     },
     geometry: {
       type: "Point",
-      coordinates: [<%=c.lng.to_f %>, <%=c.lat.to_f%>]
+
+      coordinates: [<%=c.lng.to_f %>, <%=c.lat.to_f %>]
+
     }
   },<% end %>
 ]
 };
 myLayer.setGeoJSON(geojson);
-myLayer.on('click', function(e) {
+myLayer.on('hover', function(e) {
   window.location.replace(e.layer.feature.properties.url);
 }); 
 </script>

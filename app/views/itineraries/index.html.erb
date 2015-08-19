@@ -1,27 +1,25 @@
+<div class = "container">
 <div class="jumbotron">
       
         <h1>GitAround</h1>
         <p>Travel like a local</p>
-        
-        <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p> -->
-    
-    </div>
-    <div class = "container">
-    	<h2> Most Popular </h2>
-    	<br>
-    	<div class = "row">
-    	<%= div_for(@itinerary) do |i|%>
-    		
-    		<div class="col-sm-4 boxes">
-    			<center>
-                <br>
-    			<div class = "crop_splash">
-    				<img src = "<%= i.cover %>">
-    			</div>
-    			<h3> <%= i.title %> <br> </h3>
-    			</center>
-    		</div>
-    		<% end  %>
-    	</div>
-    </div>
+</div>
+	<h2> Most Popular </h2>
+	<br>
+	<div class = "row">
+	<%= div_for(@itinerary) do |i|%>
+	   <%= link_to itinerary_path(i.id) do  %>   	
+		<div class="col-sm-4 boxes">
+			<center>
+            <br>
+			<div class = "crop_splash">
+				<img src = "<%= i.cover %>">
+			</div>
+			<h3> <%= i.title %> <br> </h3>
+			</center>
+		</div>
+        <% end  %>
+	<% end  %>
+	</div>
+</div>
 
