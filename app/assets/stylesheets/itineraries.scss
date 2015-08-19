@@ -1,48 +1,36 @@
 
 .jumbotron {
-   position: relative;
-   background: #000 url("http://cdn.magdeleine.co/wp-content/uploads/2014/06/photo-by-mario-calvo-1400x933.jpg") center center;
-   width: 100%;
-   height: 400px;
-   background-size: cover;
-   overflow: hidden;
-   text-align: center;
-   color: white!important;
-
+  position: relative;
+  background: #000 url("http://cdn.magdeleine.co/wp-content/uploads/2014/06/photo-by-mario-calvo-1400x933.jpg") center center;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  overflow: hidden;
+  text-align: center;
+  color: white!important;
 }
-
-
-.boxes {
-    border-radius: 5px;
-    box-shadow: 1px 2px 10px #888888;
-    margin: 20px; 
-    background-color: rgba(255, 255, 255, 0.6);
-    height: 420px;
-    width: 350px; 
-}
-
 
 .crop_splash {
-height: 300px;
-width: 300px;
+  height: 300px;
+  width: 300px;
 }
 
 .crop_splash img {
-height: 300px;
-width: 300px;
+  height: 300px;
+  width: 300px;
 }
 
-  html, body {
-    height: 100%;
-  }
-  
-  #map { 
-    position: relative;
-    top:0; 
-    bottom:0; 
-    width:100%; 
-    height: 400px; 
-    margin:500; 
-    padding:50; 
-    text-align: right;
-  }
+html, body {
+  height: 100%;
+}
+
+#map { 
+  position: relative;
+  top:0; 
+  bottom:0; 
+  width:100%; 
+  height: 400px; 
+  margin:500; 
+  padding:50; 
+  text-align: right;
+}

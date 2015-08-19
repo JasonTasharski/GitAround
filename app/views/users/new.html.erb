@@ -1,10 +1,7 @@
 <div class="row">
-  <div class="col-xs-4 col-xs-offset-4 post">
+  <div class="col-xs-4 col-xs-offset-4 post boxes">
     <h1>Sign Up</h1>
     <hr>
-    
-
-
     <%= form_for @user, :validate => true, :url => users_path, :html => { :multipart => true } do |f| %>
       <div class="form-group">
         <%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %>

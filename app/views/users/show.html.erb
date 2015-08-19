@@ -1,6 +1,6 @@
 <div class="container">
 <div class="row row_one">	
-  <div class="col-sm-2">
+  <div class="col-sm-2 boxlike">
 	<img src="<%= @user.avatar %>" class="img-circle">
 	<h4> <%= @user.username %></h4>
 	<hr>
@@ -16,7 +16,7 @@
 
 <div class="col-sm-1"></div>
 <div class="col-sm-4">  
-   	<h3><%= @user.username %>'s Itineraries</h3> <br>
+   	<h3 class="boxlike"><%= @user.username %>'s Itineraries</h3> <br>
    	<div class="row">	
     	<% @user.itineraries.each do |i|  %>
 	    	<div class="row">
