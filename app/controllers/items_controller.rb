@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 
   def destroy
     Item.find(params[:id]).destroy
-    redirect_to profile_path
+    redirect_to itinerary_path
   end
 
   def edit
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 
   private
       def item_params
-          params.require(:item).permit(:activity_name, :description, :category, :location)
+          params.require(:item).permit(:activity_name, :description, :category, :location, :lat, :lng)
       end
 end
 

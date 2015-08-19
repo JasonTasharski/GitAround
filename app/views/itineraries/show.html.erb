@@ -11,12 +11,20 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-3 well">
+
+
+
 			<%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
 			<div class="form-group"> 
-			<%= f.text_field :activity_name, placeholder: "Activity", class: "form-control"  %>
+
+      <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server" %>  
+      <%= f.text_field :lat, id: "cityLat" %>
+      <%= f.text_field :lng, id: "cityLng" %>
+      <%= f.text_field :activity_name, id: "city2" %>
+
 			<%= f.text_area :description, placeholder: "Description", class: "form-control" %>
 			<%= f.text_field :category, placeholder: "Category", class: "form-control" %>
-			<%= f.text_field :location, placeholder: "Location", class: "form-control"%>
+			
 			<%= f.submit class: "btn" %>
 			</div>
 			<% end %>
