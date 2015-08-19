@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   #form to create new user
   def new
-      @user = User.new
-      render :new
+    @user = User.new
+    render :new
   end
 
   #create new user in db
