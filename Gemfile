@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'rspec-rails'
 gem 'kaminari'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -46,7 +46,7 @@ group :development, :test do
   gem 'spring'
 
   # Rspec is for testing
-  gem 'rspec-rails'
+
   gem 'ffaker'
   gem 'dotenv-rails'
 
