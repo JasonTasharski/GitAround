@@ -1,37 +1,37 @@
-<div id="map"></div>
 <div class="container">
-	<div class="row">
-		<div class="col-sm-4 well">
-			<%= @itinerary.title %>
-		</div>
-		<div class="col-sm-8 well">
-			<%= @itinerary.description %>
-		    <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil' %><%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-3 well">
+  <div class="row">
+    <div class="col-sm-4">
+     <br>
+     <h3><%= @itinerary.title %></h3> 
+      <%= @itinerary.description %>
 
+        <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil'%>
+        <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> <br><br><br>
 
-
-			<%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
-			<div class="form-group"> 
-
-      <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server" %>  
-      <%= f.hidden_field :lat, id: "cityLat" %>
+    <div class="well" style="margin-right: 50px;">
+      <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
+      <div class="form-group"> 
+      <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server", class: "form-control"%> <br>
+      <%= f.hidden_field :lat, id: "cityLat" %> 
       <%= f.hidden_field :lng, id: "cityLng" %>
+      <%= f.text_field :activity_name, placeholder: "Activity Name", class: "form-control" %> <br>
+      <%= f.text_area :description, placeholder: "Description", class: "form-control" %> <br>
+      <%= f.text_field :category, placeholder: "Category", class: "form-control" %> <br>
       
-
-      <%= f.text_field :activity_name, placeholder: "Activity Name", class: "form-control" %>
-			<%= f.text_area :description, placeholder: "Description", class: "form-control" %>
-			<%= f.text_field :category, placeholder: "Category", class: "form-control" %>
-			
-			<%= f.submit class: "btn" %>
-			</div>
-			<% end %>
-		</div>
-		<div class="col-sm-3 well">
-			<h5>Eat</h5>
+      <%= f.submit class: "btn" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class= "col-sm-8">
+    <br><br><br><br>
+    <div id="map"></div>
+  </div>
+</div>
+<div class="row">
+  <br><br><br>
+    <div class="col-sm-4 boxes">
+      <h4>Eat</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "eat" %>
         <%= i.activity_name %> <br>
@@ -39,9 +39,9 @@
         <%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
         <% end %>
       <% end %>
-		</div>
-		<div class="col-sm-3 well">
-			<h5>Sleep</h5>
+    </div>
+    <div class="col-sm-4 boxes">
+      <h4>Sleep</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "sleep" %>
         <%= i.activity_name %> <br>
@@ -49,38 +49,33 @@
         <%= i.location %> <span> <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
         <% end %>
       <% end %>
-		</div>
-		<div class="col-sm-3 well">
-			<h5>Play</h5>
-			<% @itinerary.items.each do |i| %>
+    </div>
+    <div class="col-sm-4 boxes">
+      <h4>Play</h4>
+      <% @itinerary.items.each do |i| %>
       <% if i.category == "play" %>
-  			<%= i.activity_name %> <br>
-  			<%= i.description %> <br>
-  			<%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span><hr>
         <% end %>
-			<% end %>
-		</div>
-	</div>
+      <% end %>
+    </div>
+   </div> 
+  </div>
 </div>
-
 <script>
  L.mapbox.accessToken = 'pk.eyJ1IjoiYXNhbnRvczMwMjYiLCJhIjoiZWZlMmMyM2JiN2ZiNzcxZmJkOGJhMWNhZWE4ODc1MjMifQ.Moj73Bv5_uyylRIcZkXcYg';
   var map = L.mapbox.map('map', 'mapbox.high-contrast')
                 .setView([37.77, -122.45], 12);
-
   // Disable drag and zoom handlers.
       // map.dragging.disable();
       // map.touchZoom.disable();
       map.doubleClickZoom.disable();
       map.scrollWheelZoom.disable();
-
 // Disable tap handler, if present.
 if (map.tap) map.tap.disable();
-
 var myLayer = L.mapbox.featureLayer().addTo(map);
-
 var geocoder = L.mapbox.geocoder('mapbox.places');
-
 var geojson = {
   type: "FeatureCollection",
   features: [
@@ -96,16 +91,15 @@ var geojson = {
     },
     geometry: {
       type: "Point",
+
       coordinates: [<%=c.lng.to_f %>, <%=c.lat.to_f %>]
+
     }
   },<% end %>
 ]
-
 };
-
 myLayer.setGeoJSON(geojson);
-myLayer.on('click', function(e) {
+myLayer.on('hover', function(e) {
   window.location.replace(e.layer.feature.properties.url);
 }); 
-
 </script>
