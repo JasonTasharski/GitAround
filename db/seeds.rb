@@ -14,6 +14,7 @@ User.create(username: "test", email: "test@test.com", password: "test", avatar: 
 	user_params[:email] = FFaker::Internet.email
 	user_params[:password] = "password"
 	user_params[:avatar] = "http://e4e.herokuapp.com/assets/blank_avatar.png"
+  user_params[:hometown] = "San Francisco"
 	@user = User.create!(user_params)
 end
 
@@ -23,7 +24,6 @@ User.all.each do |user|
     itinerary_params[:title] = FFaker::HipsterIpsum.sentence(1)
     itinerary_params[:description] = FFaker::HipsterIpsum.sentence(2)
     itinerary_params[:cover] = "http://e794d552b4c822b8205c-27b9cc3fb8731a4a7598943b8a8a6a91.r73.cf1.rackcdn.com/1/1/default.jpg"
-    itinerary_params[:hometown] = "San Francisco"
     @itinerary = user.itineraries.create!(itinerary_params)
   end
 end

@@ -41,7 +41,7 @@
 	        <% if current_user %> 
 	          <li><a href="/users/<%= current_user.id %>">Profile</a></li>
 	          <li><a href="/logout">Log Out</a></li>
-	          <li><a href="/profile/<%= current_user.username %>/posts/new">New Trip</a></li>
+	          <li><a href="/users/<%= current_user.id %>/itineraries/new">New Trip</a></li>
 	        <% else %>  
 	          <li><a href="/signup">Sign Up</a></li>
 	          <li><a href="/login">Log In</a></li>
