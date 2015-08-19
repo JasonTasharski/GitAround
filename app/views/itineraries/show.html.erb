@@ -96,7 +96,7 @@ var geojson = {
     },
     geometry: {
       type: "Point",
-      coordinates: [<%=c.lng %>, <%=c.lat%>]
+      coordinates: [<%=c.lng.to_f %>, <%=c.lat.to_f %>]
     }
   },<% end %>
 ]

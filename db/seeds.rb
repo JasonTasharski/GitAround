@@ -41,8 +41,8 @@ Itinerary.all.each do |itinerary|
     elsif num == 0
       item_params[:category] = "play"
     end
-    item_params[:lat] = (37.74 + (rand() * 0.04))
-    item_params[:lng] = ((-122.5) + (rand() * 0.1))
+    item_params[:lat] = "37.7854135"
+    item_params[:lng] ="-122.42938300000003"
     @item = itinerary.items.create!(item_params)
   end
 end
