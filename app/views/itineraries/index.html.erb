@@ -11,7 +11,7 @@
     	<br>
     	<div class = "row">
     	<%= div_for(@itinerary) do |i|%>
-    		
+    	   <%= link_to itinerary_path(i.id) do  %>   	
     		<div class="col-sm-4 boxes">
     			<center>
     			<div class = "crop_splash">
@@ -20,7 +20,8 @@
     			<h3> <%= i.title %> <br> </h3>
     			</center>
     		</div>
-    		<% end  %>
+            <% end  %>
+    	<% end  %>
     	</div>
     </div>
 
