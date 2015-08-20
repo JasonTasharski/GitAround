@@ -2,6 +2,7 @@
   <div class="col-xs-4 col-xs-offset-4 post boxes">
     <h1>Sign Up</h1>
     <hr>
+<<<<<<< HEAD
     <%= form_for @user, :validate => true, :url => users_path, :html => { :multipart => true } do |f| %>
       <div class="form-group">
         <%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %>
@@ -12,11 +13,20 @@
       <div class="form-group">
         <%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %>
       </div>
+=======
+    
 
-      <div class="form-group">
-        <%= f.file_field :avatar, class: "form-control", required: false %>
-      </div>
-      <%= f.submit "Sign Up", class: "btn btn-default" %>
-    <% end %>
+
+        <%= form_for @user, :validate => true, :url => users_path, :html => { :multipart => true } do |f| %>
+        <div class="form-group">
+        <%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %> <br>
+        <%= f.text_field :username, placeholder: "Username", class: "form-control", required: true %> <br>
+        <%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %> <br>
+        Add a photo: <br><br> <%= f.file_field :avatar, required: false %> <br><br>
+        <%= f.submit "Sign Up", class: "btn btn-default" %> <br>
+      <% end %>
+>>>>>>> d60fdeb935c43a6617c5fcdb1aadd3dcb12d0f40
+
+    </div>
   </div>
 </div>

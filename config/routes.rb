@@ -9,6 +9,10 @@ resources :users do
 end
 
 resources :itineraries do 
+	get 'clone'
+end
+
+resources :itineraries do 
     resources :items
 end
 

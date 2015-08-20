@@ -5,8 +5,13 @@
      <h3><%= @itinerary.title %></h3> 
       <%= @itinerary.description %>
 
+     
+
         <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil'%>
         <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> <br><br><br>
+
+<%= link_to "Clone", itinerary_clone_path(params[:id]) %>
+
 
     <div class="well" style="margin-right: 50px;">
       <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>

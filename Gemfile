@@ -48,6 +48,7 @@ group :development, :test do
   # Rspec is for testing
   gem 'rspec-rails'
   gem 'ffaker'
+  gem 'factory_girl_rails'
   gem 'dotenv-rails'
 
 end
