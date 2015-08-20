@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150820002441) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.integer  "parent_id"
     t.integer  "parent"
   end
 

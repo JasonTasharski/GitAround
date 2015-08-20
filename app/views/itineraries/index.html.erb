@@ -1,5 +1,5 @@
 <div>
-  <div class="jumbotron">
+  <div class="jumbotron animated slideInDown">
     <h1>GitAround</h1>
     <p>Travel like a local</p>
   </div>
@@ -7,10 +7,10 @@
 <div class ="container">
 	<h2> Most Popular </h2>
 	<br>
-	<div class = "row">
+	<div class = "row animated slideInRight">
 	<%= div_for(@itinerary) do |i|%>
 	   <%= link_to itinerary_path(i.id) do  %>   	
-		<div class="col-sm-4 boxes">
+		<div class="col-sm-4 boxes ripplelink">
 			<center>
             <br>
 			<div class = "crop_splash">
