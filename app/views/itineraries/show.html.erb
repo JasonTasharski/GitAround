@@ -1,39 +1,55 @@
 <div class="container">
-  <div class="row">
+  <div class="row"> 
     <div class="col-sm-4">
      <br>
      <h3><%= @itinerary.title %></h3> 
+
       <%= @itinerary.description %>
+      <% if current_user %>
       <% if current_user.id == @itinerary.user_id %>
         <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil'%>
         <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> 
       <% end %>
-      <br><br><br>
-
-      <%= link_to "Clone this Itinerary", itinerary_clone_path(params[:id]) %>
+      <% end %>
       <br> <br>
-    <% if (current_user.id == @itinerary.user_id) %>
-        <div class="well" style="margin-right: 50px;">
-          <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
-              <div class="form-group"> 
-                  <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server", class: "form-control"%> <br>
-                  <%= f.hidden_field :lat, id: "cityLat" %> 
-                  <%= f.hidden_field :lng, id: "cityLng" %>
-                  <%= f.text_field :activity_name, placeholder: "Activity Name", class: "form-control" %> <br>
-                  <%= f.text_area :description, placeholder: "Description", class: "form-control" %> <br>
-                  <%= f.text_field :category, placeholder: "Category", class: "form-control" %> <br>
-                  
-                  <%= f.submit class: "btn" %>
-              </div>
+    <% if current_user %>
+      <% if (current_user.id == @itinerary.user_id) %>
+          <div class="well" style="margin-right: 50px;">
+            <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
+                <div class="form-group"> 
+                    <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server", class: "form-control"%> <br>
+                    <%= f.hidden_field :lat, id: "cityLat" %> 
+                    <%= f.hidden_field :lng, id: "cityLng" %>
+                    <%= f.text_field :activity_name, placeholder: "Activity Name", class: "form-control" %> <br>
+                    <%= f.text_area :description, placeholder: "Description", class: "form-control" %> <br>
+                    <%=  f.radio_button :category, 'eat' %> Eat <%= f.radio_button :category, 'sleep' %> Sleep <%= f.radio_button :category, 'play' %>    Play <br><br>
+                    
+                    <%= f.submit class: "btn" %>
+                </div>
+            <% end %>
           <% end %>
         </div>
     <% end  %>
   </div>
+  
+
   <div class= "col-sm-8">
+      <br>
+        <% if current_user %>
+            <span style="float: right">
+               <%= link_to itinerary_clone_path(params[:id]) do  %>    
+               <div class = "crop_sheep">
+                 <img src = "https://app.clickdimensions.com/blob/clickdimensionscom-ak7l5/images/newsletters/nov12/clone.png">
+               </div>
+               <% end  %>Clone
+            </span>
+        <% end  %>
     <br><br><br><br>
     <div class="ripplelink"id="map"></div>
   </div>
 </div>
+
+
 <div class="row">
   <br><br><br>
     <div class="col-sm-1"></div>
@@ -44,9 +60,11 @@
         <%= i.activity_name %> <br>
         <%= i.description %> <br>
         <%= i.location %> 
-        <% if (current_user.id == @itinerary.user_id) %>
-            <span>
-              <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
+        <% if current_user %>
+          <% if (current_user.id == @itinerary.user_id) %>
+              <span>
+                <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
+          <% end %>
         <% end %>
         <hr>
       <% end %>    
@@ -59,8 +77,10 @@
         <%= i.activity_name %> <br>
         <%= i.description %> <br>
         <%= i.location %> 
-        <% if (current_user.id == @itinerary.user_id) %>
-            <span> <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
+        <% if current_user %>
+          <% if (current_user.id == @itinerary.user_id) %>
+              <span> <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
+          <% end %>
         <% end %>
         <hr>
         <% end %>
@@ -73,9 +93,11 @@
         <%= i.activity_name %> <br>
         <%= i.description %> <br>
         <%= i.location %> 
-        <% if (current_user.id == @itinerary.user_id) %>
-            <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
-        <% end %>
+        <% if current_user %>
+          <% if (current_user.id == @itinerary.user_id) %>
+              <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
+          <% end %>
+        <% end %>  
         <hr>
         <% end %>
       <% end %>
