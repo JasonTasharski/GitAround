@@ -24,12 +24,9 @@
  
  <!-- stylesheets  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  
-
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="animate.min.css">
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 
 </head>
@@ -51,7 +48,7 @@
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
           <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+            <label class="mdl-button mdl-js-button mdl-button--icon ripplelink" for="search-field">
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
@@ -63,17 +60,21 @@
           <div class="android-navigation-container collapse navbar-collapse">
             <nav class="android-navigation mdl-navigation">
               <% if current_user %>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/users/<%= current_user.id %>">Profile</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/logout">Log Out</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/users/<%= current_user.id %>/itineraries/new">New Trip</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase ripplelink" href="/users/<%= current_user.id %>">Profile</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase ripplelink" href="/logout">Log Out</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase ripplelink" href="/users/<%= current_user.id %>/itineraries/new">New Trip</a>
               <% else %>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/signup">Sign Up</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/login">Log In</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase ripplelink" href="/signup">Sign Up</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase ripplelink" href="/login">Log In</a>
               <% end %>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/about">About Us</a>
+<<<<<<< HEAD
+              <a class="mdl-navigation__link mdl-typography--text-uppercase ripplelink" href="/about">About Us</a>
+=======
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/about/show">About Us</a>
+>>>>>>> 67c2207cf7678d36f6a772bb73ed2eb13ec4923d
             </nav>
           </div>
-          <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+          <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect ripplelink" id="more-button">
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
@@ -86,7 +87,7 @@
               <li class="mdl-menu__item"><a href="/login">Log In</a></li>
             <% end %>
           </ul>
-          <span class="android-mobile-title mdl-layout-title">
+          <span class="android-mobile-title mdl-layout-title ripplelink">
             <a class="navbar-brand logo" href="/">Git Around!</a>
           </span>
         </div>

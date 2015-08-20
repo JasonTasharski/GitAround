@@ -6,21 +6,20 @@
 	<h4> <%= @user.username.titleize %></h4>
 	<hr>
 	<%= @user.hometown %>
-	Joined <%= localize(@user.created_at, :format => '%m/%d/%Y') %>
-	Itineraries created: <%= @user.itineraries.count %>
+	Joined <%= localize(@user.created_at, :format => '%m/%d/%Y') %> <br>
+	My Itineraries: <%= @user.itineraries.count %> <br>
 	<% if @user == current_user  %>
-		<%= link_to 'Edit', edit_user_path(@user) %>
+		<%= link_to 'Edit Profile', edit_user_path(@user) %>
 	<% else  %>
 	<% end  %>	
 
   </div>
 
-<div class="col-sm-1"></div>
-<div class="col-sm-4">  
+<div class="col-sm-4 boxlike">  
 
 	<h3><%= @user.username.titleize %>'s Itineraries</h3> <br>
    	<div class="row">
-   	<% if @user.itineraries.include? @itinerary  %>	
+   	<div class= "col-sm-10">
     	<% @user.itineraries.each do |i|  %>
 	    	<% if i.parent == i.user_id %>
 		    	<div class="row">
@@ -33,25 +32,23 @@
 			    		</div>
 		    		<% end  %>
 		    	</div>	
-		    <% end  %>
-		    <hr>
+		    	<br>
+		    <% else  %>
+		    <% end  %> 
 		<% end  %>
 
-	<% else %>	
-		<%= link_to new_itinerary_path do %>
-			<div class="col-sm-12">
-			    Create a new Itinerary
-			</div>
-		<% end  %>   		
-	    	
-	 
-    <% end  %>
+	<%= link_to new_itinerary_path do %>
+		    Create a new Itinerary
+ 
+	<% end  %>
+    </div>
     </div>
 </div>
 
-<div class="col-sm-4">  
+<div class="col-sm-4 boxlike">  
    	<h3>Cloned Itineraries</h3> <br>
-   	<div class="row" id="saved">	
+   	<div class="row" id="saved">
+   		<div class= "col-sm-10">
     	<% @user.itineraries.each do |i|  %>
 	    	<% if i.parent == i.user_id %>
 	    	<% else %>
@@ -64,10 +61,12 @@
 	    			<%= i.title %>
 	    		</div>
 	    		<% end  %>
+	    	
 	    	<% end  %>	
 	    	</div>
-	    	<hr>
+	    	<br>
     	<% end  %>
+    	</div>	
     </div>
 </div>
 
