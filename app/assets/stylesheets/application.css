@@ -14,12 +14,19 @@
  *= require_self
  */
 body {
-	padding-top: 50px;
 }
 .form-group {
 	margin: 0;
 }
-
+.jumbo {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.sharpcorner {
+  border-radius: 0px;
+  
+}
 hr {
   border: 0;
   height: 1px;

@@ -32,24 +32,11 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand logo" href="/">Git Around!</a>
-	    </div>
+	    
 
       <!-- Left aligned menu below button -->
-    <button id="demo-menu-lower-left"
-        class="mdl-button mdl-js-button mdl-button--icon">
-  <i class="material-icons">more_vert</i>
-</button>
+  
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
@@ -70,25 +57,31 @@
           </div>
 
           <!-- Navigation -->
-          <div class="android-navigation-container">
+          <div class="android-navigation-container collapse navbar-collapse">
             <nav class="android-navigation mdl-navigation">
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Phones</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tablets</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Wear</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">TV</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Auto</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">One</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Play</a>
+              <% if current_user %>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/users/<%= current_user.id %>">Profile</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/logout">Log Out</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/users/<%= current_user.id %>/itineraries/new">New Trip</a>
+              <% else %>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/signup">Sign Up</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/login">Log In</a>
+              <% end %>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/about">About Us</a>
             </nav>
           </div>
           <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
-            <li class="mdl-menu__item">5.0 Lollipop</li>
-            <li class="mdl-menu__item">4.4 KitKat</li>
-            <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
-            <li class="mdl-menu__item">Android History</li>
+            <% if current_user %> 
+              <li class="mdl-menu__item"><a href="/users/<%= current_user.id %>">Profile</a></li>
+              <li class="mdl-menu__item"><a href="/logout">Log Out</a></li>
+              <li class="mdl-menu__item"><a href="/users/<%= current_user.id %>/itineraries/new">New Trip</a></li>
+            <% else %>
+              <li class="mdl-menu__item"><a href="/signup">Sign Up</a></li>
+              <li class="mdl-menu__item"><a href="/login">Log In</a></li>
+            <% end %>
           </ul>
           <span class="android-mobile-title mdl-layout-title">
             <a class="navbar-brand logo" href="/">Git Around!</a>
@@ -96,10 +89,8 @@
         </div>
       </div>
 
-
 	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
+	    <div id="bs-example-navbar-collapse-1">
           <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
           for="demo-menu-lower-left">
 	        <% if current_user %> 
@@ -110,10 +101,9 @@
 	          <li class="mdl-menu__item"><a href="/signup">Sign Up</a></li>
 	          <li class="mdl-menu__item"><a href="/login">Log In</a></li>
 	        <% end %>
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
+          <li class="mdl-menu__item"><a href="/about">About Us</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
 
 	<div class="text-center">
 	    <% flash.each do |name, msg| %>
