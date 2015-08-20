@@ -14,6 +14,7 @@ class ItinerariesController < ApplicationController
   def create
     @user = current_user
     @itinerary = @user.itineraries.new(itinerary_params)
+    @itinerary.parent = @user.id
     if @itinerary.save
       redirect_to user_itinerary_path(@user, @itinerary)
     else
@@ -51,6 +52,7 @@ class ItinerariesController < ApplicationController
   def clone
     itinerary = Itinerary.find(params[:itinerary_id])
     itinerary_clone = itinerary.dup
+    itinerary_clone.items = itinerary.items
     @user = current_user
     itinerary_clone.user_id = @user.id
     itinerary_clone.cover = itinerary.cover
