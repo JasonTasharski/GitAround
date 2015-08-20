@@ -1,69 +1,86 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <br>
-      <h3><%= @itinerary.title %></h3> 
+     <br>
+     <h3><%= @itinerary.title %></h3> 
       <%= @itinerary.description %>
-      <% if current_user %>
-        <% if current_user == @itinerary.user_id %>
-          <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil'%>
-          <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> 
-        <% end %>
-        <br><br><br>
+      <% if current_user.id == @itinerary.user_id %>
+        <%= link_to '', edit_itinerary_path(@itinerary), class: 'glyphicon glyphicon-pencil'%>
+        <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> 
+      <% end %>
+      <br><br><br>
 
-        <%= link_to "Clone this Itinerary", itinerary_clone_path(params[:id]) %>
-        <br> <br>
-        <% if (current_user == @itinerary.user_id) %>
-          <div class="well" style="margin-right: 50px;">
-            <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
+      <%= link_to "Clone this Itinerary", itinerary_clone_path(params[:id]) %>
+      <br> <br>
+    <% if (current_user.id == @itinerary.user_id) %>
+        <div class="well" style="margin-right: 50px;">
+          <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
               <div class="form-group"> 
-                <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server", class: "form-control"%> <br>
-                <%= f.hidden_field :lat, id: "cityLat" %> 
-                <%= f.hidden_field :lng, id: "cityLng" %>
-                <%= f.text_field :activity_name, placeholder: "Activity Name", class: "form-control" %> <br>
-                <%= f.text_area :description, placeholder: "Description", class: "form-control" %> <br>
-                <%= f.text_field :category, placeholder: "Category", class: "form-control" %> <br>
-                
-                <%= f.submit class: "btn" %>
+                  <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server", class: "form-control"%> <br>
+                  <%= f.hidden_field :lat, id: "cityLat" %> 
+                  <%= f.hidden_field :lng, id: "cityLng" %>
+                  <%= f.text_field :activity_name, placeholder: "Activity Name", class: "form-control" %> <br>
+                  <%= f.text_area :description, placeholder: "Description", class: "form-control" %> <br>
+                  <%= f.text_field :category, placeholder: "Category", class: "form-control" %> <br>
+                  
+                  <%= f.submit class: "btn" %>
               </div>
-            <% end %>
-          </div>
-        <% end %>
-      <% end  %>
-    </div>
-    <div class= "col-sm-8">
-      <br><br><br><br>
-      <div class="ripplelink"id="map"></div>
-    </div>
+          <% end %>
+        </div>
+    <% end  %>
   </div>
-  <div class="row">
-    <br><br><br>
-      <div class="col-sm-1"></div>
-      <div class="col-sm-3 boxlike ripplelink">
-        <h4>Eat</h4>
-        <% @itinerary.items.each do |i| %>
-          <% if i.category == "eat" %>
-            <%= render partial: "shared/item", locals: {i: i, current_user: current_user} %>
-          <% end %>
+  <div class= "col-sm-8">
+    <br><br><br><br>
+    <div class="ripplelink"id="map"></div>
+  </div>
+</div>
+<div class="row">
+  <br><br><br>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-3 boxlike ripplelink">
+      <h4>Eat</h4>
+      <% @itinerary.items.each do |i| %>
+      <% if i.category == "eat" %>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> 
+        <% if (current_user.id == @itinerary.user_id) %>
+            <span>
+              <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
         <% end %>
-      </div>
-      <div class="col-sm-3 boxlike ripplelink">
-        <h4>Sleep</h4>
-        <% @itinerary.items.each do |i| %>
-          <% if i.category == "sleep" %>
-            <%= render partial: "shared/item", locals: {i: i, current_user: current_user} %>
-          <% end %>
+        <hr>
+      <% end %>    
+      <% end %>
+    </div>
+    <div class="col-sm-3 boxlike ripplelink">
+      <h4>Sleep</h4>
+      <% @itinerary.items.each do |i| %>
+      <% if i.category == "sleep" %>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> 
+        <% if (current_user.id == @itinerary.user_id) %>
+            <span> <%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
         <% end %>
-      </div>
-      <div class="col-sm-3 boxlike ripplelink">
-        <h4>Play</h4>
-        <% @itinerary.items.each do |i| %>
-          <% if i.category == "play" %>
-            <%= render partial: "shared/item", locals: {i: i, current_user: current_user} %>
-          <% end %>
+        <hr>
         <% end %>
-      </div>
-    </div> 
+      <% end %>
+    </div>
+    <div class="col-sm-3 boxlike ripplelink">
+      <h4>Play</h4>
+      <% @itinerary.items.each do |i| %>
+      <% if i.category == "play" %>
+        <%= i.activity_name %> <br>
+        <%= i.description %> <br>
+        <%= i.location %> 
+        <% if (current_user.id == @itinerary.user_id) %>
+            <span><%= link_to '', edit_itinerary_item_path(@itinerary.id,i), class: 'glyphicon glyphicon-pencil' %> <%= link_to "", itinerary_item_path(@itinerary.id, i), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %></span>
+        <% end %>
+        <hr>
+        <% end %>
+      <% end %>
+    </div>
+   </div> 
   </div>
 </div>
 <script>
@@ -89,8 +106,26 @@ var geojson = {
       title: "<%= c.activity_name %>",
       description: "<%= c.description %>",
       "marker-size": "medium",
-      "marker-color": "#7ec9b1",
-      "marker-symbol": "suitcase", 
+       
+
+      <% if (c.category == "eat") %>
+       "marker-color": "#2980b9",
+       <% elsif (c.category == "sleep") %>
+       "marker-color": "#e74c3c",
+       <% elsif (c.category == "play") %>
+       "marker-color": "#1bc4a3",
+       <% end %>
+
+      <% if (c.category == "eat") %>
+      "marker-symbol": "cafe",
+     
+      <% elsif (c.category == "sleep") %>
+      "marker-symbol": "lodging"
+      
+      <% elsif (c.category == "play") %>
+      "marker-symbol": "camera"
+      
+      <% end %>
     },
     geometry: {
       type: "Point",
