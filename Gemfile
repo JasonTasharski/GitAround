@@ -1,11 +1,8 @@
 source 'https://rubygems.org'
 
-<<<<<<< HEAD
-gem 'friendly_id'
-=======
-gem 'animate.css-rails', '~> 3.2.0'
 
->>>>>>> f3d451743e7682aa8e1bf6286195d556b7147c23
+gem 'friendly_id'
+gem 'animate.css-rails', '~> 3.2.0'
 gem 'kaminari'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
