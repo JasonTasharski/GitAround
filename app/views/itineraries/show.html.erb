@@ -11,17 +11,21 @@
         <% end %> 
 
     <% if current_user == @itinerary.user_id %>
-      <div class="well" style="margin-right: 50px;"> 
+      <%= link_to "Clone", itinerary_clone_path(params[:id]) %>
+
+
+      <div class="well" style="margin-right: 50px;">
         <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
-         <div class="form-group">  
+          <div class="form-group"> 
             <%= f.text_field :location, placeholder: "Location", id:"searchTextField", size:"50", autocomplete:"on", runat:"server", class: "form-control"%> <br>
             <%= f.hidden_field :lat, id: "cityLat" %> 
             <%= f.hidden_field :lng, id: "cityLng" %>
             <%= f.text_field :activity_name, placeholder: "Activity Name", class: "form-control" %> <br>
             <%= f.text_area :description, placeholder: "Description", class: "form-control" %> <br>
             <%= f.text_field :category, placeholder: "Category", class: "form-control" %> <br>
+            
             <%= f.submit class: "btn" %>
-           </div> 
+          </div>
         <% end %>
       </div>
     <% end %>
