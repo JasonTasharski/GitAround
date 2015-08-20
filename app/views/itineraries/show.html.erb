@@ -8,6 +8,7 @@
       <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> <br><br><br>
       <%= link_to "Clone this Itinerary", itinerary_clone_path(params[:id]) %>
       <br> <br>
+
     <div class="well" style="margin-right: 50px;">
       <%= form_for ([@user, @itinerary, @itinerary.items.build]) do |f| %>
       <div class="form-group"> 
