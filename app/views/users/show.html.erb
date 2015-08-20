@@ -15,12 +15,11 @@
 
   </div>
 
-<div class="col-sm-1"></div>
-<div class="col-sm-4">  
+<div class="col-sm-4 boxlike">  
 
 	<h3><%= @user.username.titleize %>'s Itineraries</h3> <br>
    	<div class="row">
-
+   	<div class= "col-sm-10">
     	<% @user.itineraries.each do |i|  %>
 	    	<% if i.parent == i.user_id %>
 		    	<div class="row">
@@ -33,23 +32,23 @@
 			    		</div>
 		    		<% end  %>
 		    	</div>	
-		    	<hr>
+		    	<br>
 		    <% else  %>
 		    <% end  %> 
 		<% end  %>
 
 	<%= link_to new_itinerary_path do %>
-		<div class="col-sm-12">
 		    Create a new Itinerary
-		</div>
  
 	<% end  %>
     </div>
+    </div>
 </div>
 
-<div class="col-sm-4">  
+<div class="col-sm-4 boxlike">  
    	<h3>Cloned Itineraries</h3> <br>
-   	<div class="row" id="saved">	
+   	<div class="row" id="saved">
+   		<div class= "col-sm-10">
     	<% @user.itineraries.each do |i|  %>
 	    	<% if i.parent == i.user_id %>
 	    	<% else %>
@@ -62,10 +61,12 @@
 	    			<%= i.title %>
 	    		</div>
 	    		<% end  %>
+	    	
 	    	<% end  %>	
 	    	</div>
-	    	<hr>
+	    	<br>
     	<% end  %>
+    	</div>	
     </div>
 </div>
 
