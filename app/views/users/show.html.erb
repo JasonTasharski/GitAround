@@ -1,6 +1,6 @@
 <div class="container">
 <div class="row row_one">	
-<<<<<<< HEAD
+
   <div class="col-sm-2 boxlike">
 	<img src="<%= @user.avatar %>" class="img-circle" style="max-width: 100%; max-height: 100%;">
 	<h4> <%= @user.username.titleize %></h4>
@@ -18,7 +18,7 @@
 <div class="col-sm-1"></div>
 <div class="col-sm-4">  
 
-	<h3 class="boxlike"><%= @user.username %>'s Itineraries</h3> <br>
+	<h3><%= @user.username.titleize %>'s Itineraries</h3> <br>
    	<div class="row">
    	<% if @user.itineraries.include? @itinerary  %>	
     	<% @user.itineraries.each do |i|  %>
