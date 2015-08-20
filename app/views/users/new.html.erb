@@ -1,19 +1,25 @@
 <div class="row">
-  <div class="col-xs-4 col-xs-offset-4 post">
+  <div class="col-xs-4 col-xs-offset-4 post boxes">
     <h1>Sign Up</h1>
     <hr>
     
+    <%= form_for @user, :validate => true, :url => users_path, :html => { :multipart => true } do |f| %>
+      <div class="form-group">
+        <%= f.email_field :email, placeholder: "Email", class: "form-control", :required => true %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :username, placeholder: "Username", class: "form-control", :required => true %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, placeholder: "Password Requires 6 characters", class: "form-control", :required => true %>
+      </div>
+       <div class="form-group">
+        <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "form-control", required: true %>
+      </div>
 
-
-        <%= form_for @user, :validate => true, :url => users_path, :html => { :multipart => true } do |f| %>
-        <div class="form-group">
-        <%= f.email_field :email, placeholder: "Email", class: "form-control", required: true %> <br>
-        <%= f.text_field :username, placeholder: "Username", class: "form-control", required: true %> <br>
-        <%= f.password_field :password, placeholder: "Password", class: "form-control", required: true %> <br>
         Add a photo: <br><br> <%= f.file_field :avatar, required: false %> <br><br>
         <%= f.submit "Sign Up", class: "btn btn-default" %> <br>
       <% end %>
-
     </div>
   </div>
 </div>

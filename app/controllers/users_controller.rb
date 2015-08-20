@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     if @user = current_user
       #get updated data
-      updated_attributes = params.require(:user).permit(:email, :username, :password, :avatar)
+      updated_attributes = params.require(:user).permit(:email, :username, :password, :password_confirmation, :avatar)
       # update the creature
       current_user.update_attributes(updated_attributes)
       redirect_to user_path(current_user)
@@ -61,6 +61,6 @@ class UsersController < ApplicationController
   #private methods
   private
       def user_params
-          params.require(:user).permit(:email, :username, :password, :avatar)
+          params.require(:user).permit(:email, :username, :password, :password_confirmation, :avatar)
       end
 end

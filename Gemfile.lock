@@ -72,6 +72,11 @@ GEM
       railties (~> 4.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     ffaker (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -170,8 +175,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -191,6 +194,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  factory_girl_rails
   ffaker
   jbuilder (~> 2.0)
   jquery-rails
@@ -203,7 +207,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
-  turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 

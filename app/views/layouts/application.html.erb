@@ -8,12 +8,24 @@
 
   <!-- google autocomplete js -->
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
-  
+
   <!-- mapbox link -->
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.css' rel='stylesheet'/>
 
+  <!-- google material design stylesheet  -->
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+
+  <!-- google material design icons stylesheet  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- google material design javascript  -->
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js">
+  </script>
+ 
  <!-- stylesheets  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   
 
@@ -23,35 +35,78 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand logo" href="/">Git Around!</a>
-	    </div>
+	    
 
+      <!-- Left aligned menu below button -->
+  
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="android-title mdl-layout-title">
+            <img class="android-logo-image" src="http://www.macdrifter.com/theme/images/octocat-black.svg" width=50px height=50px>
+          </span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="android-header-spacer mdl-layout-spacer"></div>
+          <div class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search-field" />
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="android-navigation-container collapse navbar-collapse">
+            <nav class="android-navigation mdl-navigation">
+              <% if current_user %>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/users/<%= current_user.id %>">Profile</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/logout">Log Out</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/users/<%= current_user.id %>/itineraries/new">New Trip</a>
+              <% else %>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/signup">Sign Up</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/login">Log In</a>
+              <% end %>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/about">About Us</a>
+            </nav>
+          </div>
+          <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <% if current_user %> 
+              <li class="mdl-menu__item"><a href="/users/<%= current_user.id %>">Profile</a></li>
+              <li class="mdl-menu__item"><a href="/logout">Log Out</a></li>
+              <li class="mdl-menu__item"><a href="/users/<%= current_user.id %>/itineraries/new">New Trip</a></li>
+            <% else %>
+              <li class="mdl-menu__item"><a href="/signup">Sign Up</a></li>
+              <li class="mdl-menu__item"><a href="/login">Log In</a></li>
+            <% end %>
+          </ul>
+          <span class="android-mobile-title mdl-layout-title">
+            <a class="navbar-brand logo" href="/">Git Around!</a>
+          </span>
+        </div>
+      </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
+	    <div id="bs-example-navbar-collapse-1">
+          <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+          for="demo-menu-lower-left">
 	        <% if current_user %> 
-	          <li><a href="/users/<%= current_user.id %>">Profile</a></li>
-	          <li><a href="/logout">Log Out</a></li>
-	          <li><a href="/users/<%= current_user.id %>/itineraries/new">New Trip</a></li>
+	          <li class="mdl-menu__item"><a href="/users/<%= current_user.id %>">Profile</a></li>
+	          <li class="mdl-menu__item"><a href="/logout">Log Out</a></li>
+	          <li class="mdl-menu__item"><a href="/users/<%= current_user.id %>/itineraries/new">New Trip</a></li>
 	        <% else %>  
-	          <li><a href="/signup">Sign Up</a></li>
-	          <li><a href="/login">Log In</a></li>
+	          <li class="mdl-menu__item"><a href="/signup">Sign Up</a></li>
+	          <li class="mdl-menu__item"><a href="/login">Log In</a></li>
 	        <% end %>
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
+          <li class="mdl-menu__item"><a href="/about">About Us</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
 
 
 		<%= yield %>
