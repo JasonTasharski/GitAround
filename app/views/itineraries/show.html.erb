@@ -106,8 +106,26 @@ var geojson = {
       title: "<%= c.activity_name %>",
       description: "<%= c.description %>",
       "marker-size": "medium",
-      "marker-color": "#7ec9b1",
-      "marker-symbol": "lodging",
+       
+
+      <% if (c.category == "eat") %>
+       "marker-color": "#2980b9",
+       <% elsif (c.category == "sleep") %>
+       "marker-color": "#e74c3c",
+       <% elsif (c.category == "play") %>
+       "marker-color": "#1bc4a3",
+       <% end %>
+
+      <% if (c.category == "eat") %>
+      "marker-symbol": "cafe",
+     
+      <% elsif (c.category == "sleep") %>
+      "marker-symbol": "lodging"
+      
+      <% elsif (c.category == "play") %>
+      "marker-symbol": "camera"
+      
+      <% end %>
     },
     geometry: {
       type: "Point",
