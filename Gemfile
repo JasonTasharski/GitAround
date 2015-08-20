@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'friendly_id'
 gem 'kaminari'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

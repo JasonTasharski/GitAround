@@ -9,7 +9,8 @@
 	<br>
 	<div class = "row">
 	<%= div_for(@itinerary) do |i|%>
-	   <%= link_to itinerary_path(i.id) do  %>   	
+	   <% @user = i.user_id  %>
+	   <%= link_to user_itinerary_path(@user, i.id) do  %>   	
 		<div class="col-sm-4 boxes">
 			<center>
             <br>
