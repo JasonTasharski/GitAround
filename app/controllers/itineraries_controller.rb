@@ -23,16 +23,16 @@ class ItinerariesController < ApplicationController
   end
 
   def show
-    @itinerary = Itinerary.find(params[:id])
+    @itinerary = Itinerary.friendly.find(params[:id])
     render :show
   end
 
   def edit
-    @itinerary = Itinerary.find(params[:id])
+    @itinerary = Itinerary.friendly.find(params[:id])
   end
 
   def update
-    itinerary = Itinerary.find(params[:id])
+    itinerary = Itinerary.friendly.find(params[:id])
     if current_user.itineraries.include? itinerary
       itinerary.update_attributes(itinerary_params)
       redirect_to user_itinerary_path
@@ -43,12 +43,12 @@ class ItinerariesController < ApplicationController
 
   def destroy
     @user = current_user
-    Itinerary.find(params[:id]).destroy
+    Itinerary.friendly.find(params[:id]).destroy
     redirect_to user_path(current_user)
   end
 
   def clone
-    itinerary = Itinerary.find(params[:itinerary_id])
+    itinerary = Itinerary.friendly.find(params[:itinerary_id])
     itinerary_clone = itinerary.dup
     @user = current_user
     itinerary_clone.user_id = @user.id
@@ -83,44 +83,4 @@ class ItinerariesController < ApplicationController
 
 end
 
-
-
-
-
-#   def edit
-#     @user = current_user
-#     @post = Post.find(params[:id])
-#     render :edit
-#   end
-
-#   def show
-#     @user = current_user
-#     @post = Post.find(params[:id])
-#     render :show
-#   end
-
-#   def update
-#     @user = current_user
-#     @post = Post.find(params[:id])
-
-#     if current_user.id == @post.user_id
-#       @post.update_attributes(post_params)
-#       redirect_to profile_path
-#     else
-#       redirect_to root_path
-#     end
-#   end
-
-#   def destroy
-#     @user = current_user
-#     Post.find(params[:id]).destroy
-#     redirect_to session.delete(:return_to)
-#   end
-
-#   private
-#   def post_params
-#     params.require(:post).permit(:title, :body, :city_id, :photo)
-#   end
-
-# end
 

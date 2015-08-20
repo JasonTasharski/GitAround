@@ -23,6 +23,8 @@ get "/login", to: "sessions#new"
 get "/logout", to: "sessions#destroy"
 resources :sessions
 
+
+
 #              Prefix Verb   URI Pattern                                         Controller#Action
 #              signup GET    /signup(.:format)                                   users#new
 #    user_itineraries GET    /users/:user_id/itineraries(.:format)               itineraries#index

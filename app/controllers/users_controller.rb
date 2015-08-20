@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   #create new user in db
   def create
     if current_user
-      redirect_to profile_path
+      redirect_to user_path(current_user)
     else
       @user = User.new(user_params)
 
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   #edit the profile page
   def edit 
     if current_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     else
         redirect_to signup_path
         flash[:notice] = "You need to sign up before to edit profiles"
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
   #show profile page
   def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     render :show
   end
 
