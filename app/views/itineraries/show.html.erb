@@ -11,11 +11,6 @@
         <%= link_to "", itinerary_path(@itinerary), method: :delete, data: {confirm: "Are you sure?"}, class: "glyphicon glyphicon-remove delete-post" %> 
       <% end %>
       <% end %>
-      <br><br><br>
-
-
-
-
       <br> <br>
     <% if current_user %>
       <% if (current_user.id == @itinerary.user_id) %>
@@ -50,7 +45,7 @@
             </span>
         <% end  %>
     <br><br><br><br>
-    <div id="map"></div>
+    <div class="ripplelink"id="map"></div>
   </div>
 </div>
 
@@ -58,7 +53,7 @@
 <div class="row">
   <br><br><br>
     <div class="col-sm-1"></div>
-    <div class="col-sm-3 boxlike">
+    <div class="col-sm-3 boxlike ripplelink">
       <h4>Eat</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "eat" %>
@@ -75,7 +70,7 @@
       <% end %>    
       <% end %>
     </div>
-    <div class="col-sm-3 boxlike">
+    <div class="col-sm-3 boxlike ripplelink">
       <h4>Sleep</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "sleep" %>
@@ -91,7 +86,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-sm-3 boxlike">
+    <div class="col-sm-3 boxlike ripplelink">
       <h4>Play</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "play" %>
@@ -133,8 +128,26 @@ var geojson = {
       title: "<%= c.activity_name %>",
       description: "<%= c.description %>",
       "marker-size": "medium",
-      "marker-color": "#7ec9b1",
-      "marker-symbol": "suitcase",
+       
+
+      <% if (c.category == "eat") %>
+       "marker-color": "#2980b9",
+       <% elsif (c.category == "sleep") %>
+       "marker-color": "#e74c3c",
+       <% elsif (c.category == "play") %>
+       "marker-color": "#1bc4a3",
+       <% end %>
+
+      <% if (c.category == "eat") %>
+      "marker-symbol": "cafe",
+     
+      <% elsif (c.category == "sleep") %>
+      "marker-symbol": "lodging"
+      
+      <% elsif (c.category == "play") %>
+      "marker-symbol": "camera"
+      
+      <% end %>
     },
     geometry: {
       type: "Point",

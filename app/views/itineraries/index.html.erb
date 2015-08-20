@@ -1,17 +1,19 @@
 <div>
-  <div class="jumbotron">
+  <div class="jumbotron animated slideInDown">
     <h1>GitAround</h1>
-    <p>Travel like a local</p>
+    <h2>The easiest way to find, clone, and customize travel itineraries <br></h2>
+	   
   </div>
 </div>
 <div class ="container">
 	<h2> Most Popular </h2>
 	<br>
-	<div class = "row">
+	<div class = "row animated slideInRight">
 	<%= div_for(@itinerary) do |i|%>
 	   <% @user = i.user_id  %>
 	   <%= link_to user_itinerary_path(@user, i.id) do  %>   	
-		<div class="col-sm-4 boxes">
+		<div class="col-sm-4 boxes ripplelink">
+
 			<center>
             <br>
 			<div class = "crop_splash">
