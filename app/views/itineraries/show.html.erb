@@ -10,8 +10,6 @@
       <% end %>
       <br><br><br>
 
-      
-
       <%= link_to "Clone this Itinerary", itinerary_clone_path(params[:id]) %>
       <br> <br>
     <% if (current_user.id == @itinerary.user_id) %>
@@ -33,13 +31,13 @@
   </div>
   <div class= "col-sm-8">
     <br><br><br><br>
-    <div id="map"></div>
+    <div class="ripplelink"id="map"></div>
   </div>
 </div>
 <div class="row">
   <br><br><br>
     <div class="col-sm-1"></div>
-    <div class="col-sm-3 boxlike">
+    <div class="col-sm-3 boxlike ripplelink">
       <h4>Eat</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "eat" %>
@@ -54,7 +52,7 @@
       <% end %>    
       <% end %>
     </div>
-    <div class="col-sm-3 boxlike">
+    <div class="col-sm-3 boxlike ripplelink">
       <h4>Sleep</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "sleep" %>
@@ -68,7 +66,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-sm-3 boxlike">
+    <div class="col-sm-3 boxlike ripplelink">
       <h4>Play</h4>
       <% @itinerary.items.each do |i| %>
       <% if i.category == "play" %>
