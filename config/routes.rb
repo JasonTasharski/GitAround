@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'about/show'
+
 root "itineraries#index"
 
 #user sign up
