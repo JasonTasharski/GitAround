@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 group :production do
   gem 'rails_12factor'
+  gem 'pg'
 end
 group :development, :test do
   gem 'rspec-rails'
