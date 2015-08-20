@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:itinerary_id])
+    
     render :show
   end
 

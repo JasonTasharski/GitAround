@@ -19,10 +19,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- google material design javascript  -->
-  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js">
+  </script>
  
  <!-- stylesheets  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   
 
@@ -105,11 +108,7 @@
         </ul>
     </div><!-- /.navbar-collapse -->
 
-	<div class="text-center">
-	    <% flash.each do |name, msg| %>
-	      <%= content_tag :div, msg, class: "alert #{name == 'error' ? 'alert-danger' : 'alert-info'}" %>
-	    <% end %>
-	</div>
+
 		<%= yield %>
 
 </body>

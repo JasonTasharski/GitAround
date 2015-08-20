@@ -1,8 +1,9 @@
 <div class="container">
 <div class="row row_one">	
+
   <div class="col-sm-2 boxlike">
-	<img src="<%= @user.avatar %>" class="img-circle">
-	<h4> <%= @user.username %></h4>
+	<img src="<%= @user.avatar %>" class="img-circle" style="max-width: 100%; max-height: 100%;">
+	<h4> <%= @user.username.titleize %></h4>
 	<hr>
 	<%= @user.hometown %>
 	Joined <%= localize(@user.created_at, :format => '%m/%d/%Y') %>
@@ -16,29 +17,44 @@
 
 <div class="col-sm-1"></div>
 <div class="col-sm-4">  
-   	<h3 class="boxlike"><%= @user.username %>'s Itineraries</h3> <br>
-   	<div class="row">	
+
+	<h3><%= @user.username.titleize %>'s Itineraries</h3> <br>
+   	<div class="row">
+   	<% if @user.itineraries.include? @itinerary  %>	
     	<% @user.itineraries.each do |i|  %>
-	    	<div class="row">
-	    		<%= link_to itinerary_path(i.id) do %>
-	    		<div class="col-sm-4">
-	    			<img src="<%= i.cover %>" class="crop">
-	    		</div>
-	    		<div class="col-sm-8">
-	    			<%= i.title %>
-	    		</div>
-	    		<% end  %>
-	    	</div>
-	    	<hr>
-    	<% end  %>
+	    	<% if i.parent == i.user_id %>
+		    	<div class="row">
+		    		<%= link_to itinerary_path(i.id) do %>
+			    		<div class="col-sm-4">
+			    			<img src="<%= i.cover %>" class="crop">
+			    		</div>
+			    		<div class="col-sm-8">
+			    			<%= i.title %>
+			    		</div>
+		    		<% end  %>
+		    	</div>	
+		    <% end  %>
+		    <hr>
+		<% end  %>
+
+	<% else %>	
+		<%= link_to new_itinerary_path do %>
+			<div class="col-sm-12">
+			    Create a new Itinerary
+			</div>
+		<% end  %>   		
+	    	
+	 
+    <% end  %>
     </div>
 </div>
 
-<div class="col-sm-1"></div>
 <div class="col-sm-4">  
    	<h3>Cloned Itineraries</h3> <br>
    	<div class="row" id="saved">	
     	<% @user.itineraries.each do |i|  %>
+	    	<% if i.parent == i.user_id %>
+	    	<% else %>
 	    	<div class="row">
 	    		<%= link_to itinerary_path(i.id) do %>
 	    		<div class="col-sm-4">
@@ -48,6 +64,7 @@
 	    			<%= i.title %>
 	    		</div>
 	    		<% end  %>
+	    	<% end  %>	
 	    	</div>
 	    	<hr>
     	<% end  %>

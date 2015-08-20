@@ -14,6 +14,7 @@ class ItinerariesController < ApplicationController
   def create
     @user = current_user
     @itinerary = @user.itineraries.new(itinerary_params)
+    @itinerary.parent = @user.id
     if @itinerary.save
       redirect_to user_itinerary_path(@user, @itinerary)
     else
@@ -52,8 +53,24 @@ class ItinerariesController < ApplicationController
     @user = current_user
     itinerary_clone.user_id = @user.id
     itinerary_clone.cover = itinerary.cover
+    
     if itinerary_clone.save
+      itinerary.items.each do |item|
+          itinerary_item = Item.find(item.id)
+          itinerary_item_clone = itinerary_item.dup
+          itinerary_item_clone.save
+          itinerary_item_clone.itinerary_id = itinerary_clone.id
+          itinerary_item_clone.save
+          puts 'Cat'
+          puts itinerary_item_clone.itinerary_id
+          puts 'Dog'
+          puts itinerary_item.itinerary_id
+          
+      end    
+      puts 'Manu'
+      puts itinerary_clone.items
       redirect_to user_path(@user)
+    
     else
       redirect_to new_user_itinerary_path(@user)
     end
@@ -62,7 +79,8 @@ class ItinerariesController < ApplicationController
   private
   def itinerary_params
     params.require(:itinerary).permit(:title, :description, :cover)
-  end  
+  end 
+
 end
 
 
