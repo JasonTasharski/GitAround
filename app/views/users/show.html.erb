@@ -6,10 +6,10 @@
 	<h4> <%= @user.username.titleize %></h4>
 	<hr>
 	<%= @user.hometown %>
-	Joined <%= localize(@user.created_at, :format => '%m/%d/%Y') %>
-	Itineraries created: <%= @user.itineraries.count %>
+	Joined <%= localize(@user.created_at, :format => '%m/%d/%Y') %> <br>
+	My Itineraries: <%= @user.itineraries.count %> <br>
 	<% if @user == current_user  %>
-		<%= link_to 'Edit', edit_user_path(@user) %>
+		<%= link_to 'Edit Profile', edit_user_path(@user) %>
 	<% else  %>
 	<% end  %>	
 
@@ -20,7 +20,7 @@
 
 	<h3><%= @user.username.titleize %>'s Itineraries</h3> <br>
    	<div class="row">
-   	<% if @user.itineraries.include? @itinerary  %>	
+
     	<% @user.itineraries.each do |i|  %>
 	    	<% if i.parent == i.user_id %>
 		    	<div class="row">
@@ -33,19 +33,17 @@
 			    		</div>
 		    		<% end  %>
 		    	</div>	
-		    <% end  %>
-		    <hr>
+		    	<hr>
+		    <% else  %>
+		    <% end  %> 
 		<% end  %>
 
-	<% else %>	
-		<%= link_to new_itinerary_path do %>
-			<div class="col-sm-12">
-			    Create a new Itinerary
-			</div>
-		<% end  %>   		
-	    	
-	 
-    <% end  %>
+	<%= link_to new_itinerary_path do %>
+		<div class="col-sm-12">
+		    Create a new Itinerary
+		</div>
+ 
+	<% end  %>
     </div>
 </div>
 
