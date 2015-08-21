@@ -75,7 +75,7 @@ h1.signloghead {
 }
 
 .ripplelink:hover{
-  z-index:1000;
+  z-index:500;
   box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
   -webkit-box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
   -moz-box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;

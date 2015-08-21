@@ -89,7 +89,7 @@
     <div class="col-sm-3 boxlike ripplelink">
       <h4>Play</h4>
       <% @itinerary.items.each do |i| %>
-      <% if i.category == "play" %>
+      <% if i.category == "play" || i.category == nil %>
         <%= i.activity_name %> <br>
         <%= i.description %> <br>
         <%= i.location %> 
@@ -106,6 +106,7 @@
   </div>
 </div>
 <script>
+
  L.mapbox.accessToken = 'pk.eyJ1IjoiYXNhbnRvczMwMjYiLCJhIjoiZWZlMmMyM2JiN2ZiNzcxZmJkOGJhMWNhZWE4ODc1MjMifQ.Moj73Bv5_uyylRIcZkXcYg';
   var map = L.mapbox.map('map', 'mapbox.high-contrast')
                 .setView([37.77, -122.45], 12);
@@ -132,22 +133,14 @@ var geojson = {
 
       <% if (c.category == "eat") %>
        "marker-color": "#2980b9",
+       "marker-symbol": "cafe"
        <% elsif (c.category == "sleep") %>
        "marker-color": "#e74c3c",
-       <% elsif (c.category == "play") %>
+       "marker-symbol": "lodging"
+       <% else %>
        "marker-color": "#1bc4a3",
+       "marker-symbol": "camera"
        <% end %>
-
-      <% if (c.category == "eat") %>
-      "marker-symbol": "cafe",
-     
-      <% elsif (c.category == "sleep") %>
-      "marker-symbol": "lodging"
-      
-      <% elsif (c.category == "play") %>
-      "marker-symbol": "camera"
-      
-      <% end %>
     },
     geometry: {
       type: "Point",
@@ -156,8 +149,28 @@ var geojson = {
   },<% end %>
 ]
 };
+
+
+
+
 myLayer.setGeoJSON(geojson);
+
+
+ 
 myLayer.on('hover', function(e) {
   window.location.replace(e.layer.feature.properties.url);
-}); 
+});
+
+
+   
+   
+
+
+
+
+    
+   
+
+
+
 </script>
