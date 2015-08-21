@@ -23,6 +23,11 @@ body {
 #brand-title {
   color: white;
 }
+
+#navbar {
+  color: #F44336;
+}
+
 .form-group {
 	margin: 0;
 }
