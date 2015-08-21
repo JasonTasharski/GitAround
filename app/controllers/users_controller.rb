@@ -17,19 +17,20 @@ class UsersController < ApplicationController
     else
       @user = User.new(user_params)
 
-      respond_to do |format|
+      # respond_to do |format|
       
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:notice] = "Congrats, you're now part of Git Around!"
-        UserMailer.welcome_email(@user).deliver
-        
-        redirect_to user_path(current_user)
-        flash[:notice] = "Welcome to your Profile Page!"
-      else
-        redirect_to signup_path
-        flash[:notice] = "You need to sign up before viewing profiles"
-      end
+          if @user.save
+            session[:user_id] = @user.id
+            flash[:notice] = "Congrats, you're now part of Git Around!"
+            UserMailer.welcome_email(@user).deliver
+            
+            redirect_to user_path(current_user)
+            flash[:notice] = "Welcome to your Profile Page!"
+          else
+            redirect_to signup_path
+            flash[:notice] = "You need to sign up before viewing profiles"
+          end
+      # end
     end
   end
 
