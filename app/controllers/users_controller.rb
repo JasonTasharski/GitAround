@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   #edit the profile page
   def edit 
     if current_user
-      @user = User.friendly.find(params[:id])
+      @user = User.find(params[:id])
     else
         redirect_to signup_path
         flash[:notice] = "You need to sign up before to edit profiles"
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 
   #show profile page
   def show
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
     render :show
   end
 

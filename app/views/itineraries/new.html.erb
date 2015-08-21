@@ -11,7 +11,10 @@
                 <div class="form-group">
                     <%= t.text_field :description, placeholder: "Description", class: "form-control"  %><br>
                 </div>
-                <br>Add a photo:<br> <%= f.file_field :cover, required: false %><br>
+                <div class="form-group">
+                    <%= t.text_field :cover, placeholder: "Cover", class: "form-control"  %><br>
+                </div>
+
                 <hr>
                 <div class="form-group">
                     <%= t.submit "Save", class: "btn btn-default" %>

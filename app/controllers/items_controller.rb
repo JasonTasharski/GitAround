@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   def create
     @user = current_user
-    @itinerary = Itinerary.friendly.find(params[:itinerary_id])
+    @itinerary = Itinerary.find(params[:itinerary_id])
     @item = @itinerary.items.create(item_params)
     
     if @item.save
