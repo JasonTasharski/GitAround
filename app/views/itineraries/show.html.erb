@@ -133,22 +133,14 @@ var geojson = {
 
       <% if (c.category == "eat") %>
        "marker-color": "#2980b9",
+       "marker-symbol": "cafe"
        <% elsif (c.category == "sleep") %>
        "marker-color": "#e74c3c",
-       <% elsif (c.category == "play") %>
+       "marker-symbol": "lodging"
+       <% else %>
        "marker-color": "#1bc4a3",
+       "marker-symbol": "camera"
        <% end %>
-
-      <% if (c.category == "eat") %>
-      "marker-symbol": "cafe",
-     
-      <% elsif (c.category == "sleep") %>
-      "marker-symbol": "lodging"
-      
-      <% else (c.category == "play") %>
-      "marker-symbol": "camera"
-      
-      <% end %>
     },
     geometry: {
       type: "Point",
