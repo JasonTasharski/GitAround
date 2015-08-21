@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row row_one">	
 
-<div class="col-sm-2 boxlike">
+<div class="col-sm-2 boxlike ripplelink animated slideInLeft">
 	<img src="<%= @user.avatar %>" class="img-circle" style="max-width: 100%; max-height: 100%;">
 	<h4> <%= @user.username.titleize %></h4>
 	<hr>
@@ -15,7 +15,7 @@
 
 </div>
 
-<div class="col-sm-4 boxlike">  
+<div class="col-sm-4 boxlike ripplelink animated slideInUp">  
 	<h3><%= @user.username.titleize %>'s Itineraries</h3> <br>
    	<div class="row">
    	<div class= "col-sm-10">
@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div class="col-sm-4 boxlike">  
+<div class="col-sm-4 boxlike ripplelink animated slideInRight">  
    	<h3>Cloned Itineraries</h3> <br>
    	<div class="row" id="saved">
    		<div class= "col-sm-10">
