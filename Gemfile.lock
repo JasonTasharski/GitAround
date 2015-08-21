@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thoughtbot/paperclip.git
-  revision: 47b540d5bc3f1da1f789d2bf421adaeb3cf6fcd6
+  revision: b8221c6b9f9e4c616973b859a8ad0b05f7511372
   specs:
     paperclip (4.3.0)
       activemodel (>= 3.2.0)
@@ -53,7 +53,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (6.0.0)
+    byebug (6.0.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -79,8 +79,6 @@ GEM
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     ffaker (2.1.0)
-    friendly_id (5.1.0)
-      activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -133,7 +131,7 @@ GEM
       rails_serve_static_assets
       rails_stdout_logging
     rails_serve_static_assets (0.0.4)
-    rails_stdout_logging (0.0.3)
+    rails_stdout_logging (0.0.4)
     railties (4.2.3)
       actionpack (= 4.2.3)
       activesupport (= 4.2.3)
@@ -200,7 +198,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   ffaker
-  friendly_id
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

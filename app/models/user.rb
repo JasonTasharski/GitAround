@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-	extend FriendlyId
-  friendly_id :username, use: :slugged
-
   has_secure_password
 	has_many :itineraries
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
