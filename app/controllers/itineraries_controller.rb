@@ -23,19 +23,19 @@ class ItinerariesController < ApplicationController
   end
 
   def show
-    @itinerary = Itinerary.friendly.find(params[:id])
+    @itinerary = Itinerary.find(params[:id])
     render :show
   end
 
   def edit
-    @itinerary = Itinerary.friendly.find(params[:id])
+    @itinerary = Itinerary.find(params[:id])
   end
 
   def update
-    itinerary = Itinerary.friendly.find(params[:id])
+    itinerary = Itinerary.find(params[:id])
     if current_user.itineraries.include? itinerary
       itinerary.update_attributes(itinerary_params)
-      redirect_to user_itinerary_path
+      redirect_to user_itinerary_path(itinerary.user, itinerary)
     else
       redirect_to login_path
     end
@@ -43,12 +43,12 @@ class ItinerariesController < ApplicationController
 
   def destroy
     @user = current_user
-    Itinerary.friendly.find(params[:id]).destroy
+    Itinerary.find(params[:id]).destroy
     redirect_to user_path(current_user)
   end
 
   def clone
-    itinerary = Itinerary.friendly.find(params[:itinerary_id])
+    itinerary = Itinerary.find(params[:itinerary_id])
     itinerary_clone = itinerary.dup
     @user = current_user
     itinerary_clone.user_id = @user.id
